@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise08</title>
+</head>
+<body>
+  <form>
+    <h3>Formular 2(* = notwendig)</h3>
+    <p>Alter*:
+      <input
+        type="number"
+        name="alter"
+        min="18"
+        max="65"
+        required="required"
+        placeholder="18"/>
+    </p>
+    <p>Email*:
+      <input
+              type="email"
+              name="name"
+              required="required"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+    </p>
+    <p>Color:
+      <input
+        type="color"
+        value="#000000"
+        required="required"/>
+    </p>
+    <p>Erstzuklassung*:
+      <input type="date"
+             required="required"/>
+    </p>
+    <p>Wunschtermin (Uhrzeit):
+      <input
+        type="time"/>
+    </p>
+    <p>
+      <input type="submit" value="Send">
+      <input type="reset" value="Reset">
+    </p>
+  </form>
+</body>
+</html>

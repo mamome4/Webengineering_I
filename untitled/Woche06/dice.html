@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <title>My Sample</title>
+  <script type="text/javascript">
+    function init(){
+      window.addEventListener("message",function(event){
+        data = JSON.parse(event.data);
+        document.getElementById("num1").innerText = data.num[0]
+        document.getElementById("num2").innerText = data.num[1];
+        document.getElementById("name").innerText = data.name;
+        event.source.postMessage("got the message","*");
+      });
+    };
+    function send(){
+      window.parent.postMessage("send me something","*");
+    }
+  </script>
+</head>
+  <body onload="init();">
+    Nummer 1: <span id="num1"></span><br />
+    Nummer 2: <span id="num2"></span><br />
+    Name: <span id="name"></span><br />
+  <button type="button" onclick="send()">Click me</button>
+</body>
+</html>

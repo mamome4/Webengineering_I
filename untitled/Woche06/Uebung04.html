@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise04</title>
+  <script>
+    function createRow(name, length, spread){
+      let row = document.createElement("tr");
+      let entry1 = document.createElement("td");
+      let entry2 = document.createElement("td");
+      let entry3 = document.createElement("td");
+      entry1.textContent = name;
+      entry2.textContent = length;
+      entry3.textContent = spread;
+      row.appendChild(entry1);
+      row.appendChild(entry2);
+      row.appendChild(entry3);
+      return row;
+    }
+
+    function getData(){
+      var req = new XMLHttpRequest();
+      req.open('GET','http://www.lehre.dhbw-stuttgart.de/~spoerl/api.php?action=exercise04', true);
+      req.setRequestHeader('Accept', 'application/json');
+
+      req.onreadystatechange = function(event){
+        if(req.readyState == 4){
+          var planes = JSON.parse(req.responseText);
+          tablebody = document.getElementById("myTable").children[0];
+
+          for(var i = 0; i < planes.length; i++){
+            tablebody.appendChild(createRow(planes[i].name, planes[i].length, planes[i].spread));
+          }
+        }
+      }
+      req.send();
+    }
+  </script>
+</head>
+<body>
+  <h3>JavaScript Ecercise</h3>
+  <button onclick="getData()">Get Data</button>
+  <table id="myTable">
+    <tr>
+      <th>Name</th>
+      <th>Length</th>
+      <th>Spread</th>
+    </tr>
+  </table>
+</body>
+</html>

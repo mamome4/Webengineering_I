@@ -1,0 +1,51 @@
+#topbar{
+    background-color: white;
+    width: 100%;
+}
+#navBar{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    background-color: #5098c4;
+    margin-bottom: 10px;
+    width: 100%;
+    justify-content: space-between;
+}
+#wrapper{
+    display: flex;
+    margin-left: 10px;
+}
+#wrapper img{
+    margin-right: 40px;
+}
+#currentDir{
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 40px;
+}
+#logout_wrapper{
+    display: flex;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+#img_action_logout{
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+@media screen and (max-width: 600px){
+    #wrapper img{
+        margin-right: 20px;
+    }
+    #currentDir{
+        margin-right: 20px;
+    }
+}
+#navBar img{
+    transition: transform 500ms ease;
+}
+
+#navBar img:hover{
+    transform: scale(1.15);
+}

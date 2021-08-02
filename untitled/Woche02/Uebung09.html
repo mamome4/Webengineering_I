@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise09</title>
+</head>
+<body>
+  <h3>Formular 3 (* = notwendig)</h3>
+  <form method="post">
+    <p>Suchmaschine*:
+      <input
+        type="text"
+        name="site"
+        list="sites"
+        required="required"/>
+      <datalist id="sites">
+        <option></option>
+        <option label="Google"
+                value="https://www.google.com">
+        <option label="Bing"
+                value="https://www.bing.com">
+        <option label="DuckDuckGo"
+                value="https://www.duckduckgo.com">
+        <option label="Yahoo"
+                value="https://www.yahoo.com">
+      </datalist>
+    </p>
+    <p>Vorwahl:
+      <input
+        type="text"
+        name="site"
+        list="prefix"
+        required="required"
+        pattern="\+[0-9]{1,3}"/>
+      <datalist id="prefix">
+        <option label="Deutschland"
+                value="+49">
+        <option label="Schweiz"
+                value="+41">
+        <option label="Österreich"
+                value="+43">
+        <option label="Luxemburg"
+                value="+352">
+      </datalist>
+    </p>
+  </form>
+</body>
+</html>

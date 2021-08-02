@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise08</title>
+  <script>
+    function validate(){
+      select = document.getElementById("ident").value;
+      if(select == "E-Mail"){
+        elem = document.getElementById("E-Mail");
+        if(!elem.validity.valid || elem.value == ""){
+          elem.setCustomValidity("Emailformat: name@host.domain!");
+        }
+      } else {
+        street = document.getElementById("Straße");
+        number = document.getElementById("Hausnr");
+        zip = document.getElementById("PLZ");
+
+        if(street.value == ""){
+          zip.setCustomValidity("Straße ist notwendig!");
+        }
+        if(!number.validity.valid || number.value == ""){
+          zip.setCustomValidity("Hausnummer ist eine Zahl");
+        }
+        if(!zip.validity.valid || zip.value == ""){
+          zip.setzCustomValidity("PLZ ist zwischen 10000 & 99999");
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  W&auml;hlen Sie die Identifikation
+  <select>
+    <option value="E-Mail">E-Mail</option>
+    <option value="Adresse">Adresse</option>
+  </select> <br />
+    E-Mail: <input type="text" id="E-Mail" /><br />
+    Strasse: <input type="text" id="Straße" /><br />
+    Hausnr: <input type="number" id="Hausnr"/><br />
+    PLZ: <input type="number" min="10000" max="99999" id="PLZ" /><br />
+  <button type="button" onclick="validate()">Validieren</button>
+</body>
+</html>

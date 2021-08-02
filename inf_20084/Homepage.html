@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="topbar.css">
+    <link rel="stylesheet" type="text/css" href="table.css">
+    <link rel="stylesheet" type="text/css" href="contents.css">
+    <script rel="script" type="text/javascript" src="login_logout.js" async="async"></script>
+    <script rel="script" type="text/javascript" src="directories.js" async="async"></script>
+    <script rel="script" type="text/javascript" src="history.js" async="async"></script>
+    <script rel="script" type="text/javascript" src="fileHandling.js" async="async"></script>
+    <script rel="script" type="text/javascript" src="errorHandling.js" async="async"></script>
+    <script rel="script" type="text/javascript" src="createFile&Dir.js" async="async"></script>
+    <script rel="script" type="text/javascript" src="navBar.js" async="async"></script>
+    <script rel="script" type="text/javascript" src="loadFiles.js" async="async"></script>
+</head>
+<body onload="isLoggedIn()">
+    <div id="login">
+        <form id="login-form" enctype="application/x-www-form-urlencoded">
+            <a id="inputs">
+                <label for="input_username">Username:</label>
+                <input type="text" id="input_username">
+                <label for="input_password" >Password:</label>
+                <input type="password" id="input_password">
+            </a>
+            <p id="myText" ></p>
+            <br>
+            <button class="button" type="button" id="login_button" onclick="login()" hidden>Login</button>
+        </form>
+    </div>
+<div id="topbar" hidden>
+    <div id="navBar" hidden></div>
+</div>
+<div id="table">
+    <table id="table_content"></table>
+</div>
+<div id="contents"></div>
+</body>
+</html>

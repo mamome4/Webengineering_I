@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function createRow(fields){
+            let row = document.createElement("tr");
+            for(let j = 0; j < fields.length; j++){
+                let cell = document.createElement("td");
+                cell.textContent = fields[j];
+                row.appendChild(cell);
+            }
+            return row;
+        }
+
+        function readCSV(event){
+            const table = document.getElementById("myTable");
+            const data = event.target.result;
+            const lines = data.split(/\r\n|\n/);
+            for(let i = 0; i < lines.length; i++){
+                table.appendChild(createRow(lines[i].split(",")));
+            }
+        }
+
+        function readFile(event){
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = readCSV;
+            reader.readAsText(file);
+
+        }
+    </script>
+</head>
+<body>
+    <h3>JavaScript Demo</h3><br/>
+    <input type="file" onchange="readFile(event)"/>
+    <table border="1" id="myTable"></table>
+</body>
+</html>

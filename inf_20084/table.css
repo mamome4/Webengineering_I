@@ -1,0 +1,41 @@
+#table{
+    display: flex;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+}
+#img_action{
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
+#table_content{
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+#table_content th{
+    padding: 18px 0px;
+    background-color: #37393A;
+    color: white;
+}
+#table_content td{
+    padding: 18px 0px;
+}
+#table_content tr:nth-child(even){
+    background-color: #E8EEF2;
+}
+#table_content img{
+    margin-right: 2px;
+}
+
+#table_content img{
+    transition: transform 500ms ease;
+}
+
+#table_content img:hover{
+    transform: scale(1.1);
+}

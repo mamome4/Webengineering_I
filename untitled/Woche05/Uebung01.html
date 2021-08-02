@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+  <script>
+    function getData(){
+      var req = new XMLHttpRequest();
+      req.open('POST','http://www.lehre.dhbw-stuttgart.de/~spoerl/api.php', true);
+      req.setRequestHeader('Accept', 'text/plain');
+
+      req.onreadystatechange = function(event){
+        if(req.readyState == 4){
+          document.getElementById("myText").textContent = req.responseText;
+        }
+      }
+      req.send();
+    }
+
+  </script>
+</head>
+<body>
+  <h3>JavaScript Exercise</h3>
+  <button onclick="getData();">Get Data</button>
+  <p id="myText"></p>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise02</title>
+  <script>
+    function createRow(name, length, spread){
+      let row = document.createElement("tr");
+      let entry1 = document.createElement("td");
+      let entry2 = document.createElement("td");
+      let entry3 = document.createElement("td");
+      entry1.textContent = name;
+      entry2.textContent = length;
+      entry3.textContent = spread;
+      row.appendChild(entry1);
+      row.appendChild(entry2);
+      row.appendChild(entry3);
+      return row;
+    }
+
+    function getData(){
+      var req = new XMLHttpRequest();
+      req.open('GET','http://www.lehre.dhbw-stuttgart.de/~spoerl/api.php?action=exercise02', true);
+      req.setRequestHeader('Accept', 'application/xml');
+
+      req.onreadystatechange = function(event){
+        if(req.readyState == 4){
+          var xml = req.responseXML;
+          var planes = xml.getElementsByTagName("plane");
+          tablebody = document.getElementById("myTable").children[0];
+
+          for(var i = 0; i < planes.length; i++){
+            var attr = planes[i].children;
+            var name = "";
+            var length = 0;
+            var spread = 0;
+            for(var j = 0; j < attr.length; j++){
+              switch(attr[j].nodeName){
+                case "name":
+                  name = attr[j].textContent;
+                  break;
+                case "length":
+                  length = attr[j].textContent;
+                  break;
+                case "spread":
+                  spread = attr[j].textContent;
+                  break;
+              }
+            }
+            tablebody.appendChild(createRow(name, length, spread));
+          }
+        }
+      }
+      req.send();
+    }
+  </script>
+</head>
+<body>
+  <hr3>JavaScript Exercise</hr3> <br/>
+  <button onclick="getData();">Get Data</button>
+  <table id="myTable" border="1">
+    <tr>
+      <th>Name</th>
+      <th>Length</th>
+      <th>Spread</th>
+    </tr>
+  </table>
+</body>
+</html>

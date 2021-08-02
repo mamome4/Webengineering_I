@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uebung01</title>
+    <script type="text/javascript">
+      function exercise(){
+        var elem = document.getElementById("myList");
+        console.log(elem.textContent);
+
+        var myArray = [];
+        var temp;
+
+        for(let i = 0; i < myList.children.length; i++){
+          myArray.push(parseInt(myList.children[i].textContent, 10));
+        }
+
+        for(let i = 0; i < myArray.length; i++){
+          for(let j = 0; j < myArray.length; j++){
+            if(myArray[j] >= myArray[j + 1]){
+              temp = myArray[j];
+              myArray[j] = myArray[j + 1];
+              myArray[j + 1] = temp;
+            }
+          }
+        }
+
+        for(let i = 0; i < myArray.length; i++){
+          console.log(myArray[i]);
+        }
+
+
+        function prepareListItem(text){
+          return "<li>" + text + "</li>";
+        }
+        /*
+        function printasList(items) {
+          document.open();
+          document.write("<h3>JavaScript Demo</h3>");
+          document.write("<ul id=\"myList\">");
+          for (let i = 0; i < items.length; i++) {
+            document.write(prepareListItem(items[i]));
+          }
+          document.wirte("</ul>");
+          document.close();
+        }
+        printasList(myArray);*/
+
+        /*
+        function printasList2(items){
+          var newList = document.createElement("ul");
+          newList.id = "myList";
+
+          for(let i = 0; i < myArray.length; i++){
+            newList.appendChild(prepareListItem(items[i]));
+            document.body.replaceChild(newList, myList.children[i]);
+
+          }
+        }
+        printasList2(myArray);*/
+
+      }
+    </script>
+</head>
+<body onload="exercise();">
+  <h3>JavaScript Demo</h3>
+  <ul id="myList">
+    <li>4</li>
+    <li>2</li>
+    <li>5</li>
+    <li>9</li>
+    <li>8</li>
+  </ul>
+</body>
+</html>

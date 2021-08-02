@@ -1,0 +1,39 @@
+#login{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: auto;
+    width: 50%;
+    height: 50%;
+}
+#login-form{
+    width: 50%;
+    height: 50%;
+    margin: auto;
+}
+
+#login-form label{
+    margin-bottom: 20px;
+}
+
+#login-form input{
+    width: 97%;
+    border-radius: 3px;
+    font-size: 16px;
+    color: black;
+    padding: 3px;
+}
+.button{
+    background-color: #37393A;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    padding: 5px 20%;
+    cursor: pointer;
+    width: 100%;
+    cursor: pointer;
+}
+#myText {
+    color: red;
+}

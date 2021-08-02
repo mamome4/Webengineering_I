@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function startDrag(event) {
+            var src = event.target.src;
+            event.dataTransfer.setData("src", src);
+        }
+        function dragOver(event) {
+            event.preventDefault();
+        }
+        function drop(event) {
+            event.target.src = event.dataTransfer.getData("src");
+            event.preventDefault();
+        }
+
+    </script>
+</head>
+<body>
+    <h3>JavaScript Demo</h3>
+    <p>
+        <img ondragstart="dragOver(event);" ondrop="drop(event);" src="Drop.png">
+    </p>
+    <img draggable="true" ondragstart="startDrag(event);" src="Red_Dot.png">
+    <img draggable="true" ondragstart="startDrag(event);" src="Black_Dot.png">
+    <img draggable="true" ondragstart="startDrag(event);" src="Green_Dot.png">
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise07</title>
+  <script type="text/javascript">
+    function init(){
+      window.addEventListener("message",function(event){
+        amount = parseInt(document.getElementById("amount").innerText, 10);
+        newAmount = amount + parseInt(event.data);
+        document.getElementById("amount").innerText = newAmount;
+      });
+    };
+    function switchGame(){
+      game = document.getElementById("game").value;
+      document.getElementById("include").setAttribute("src", game + ".html")
+    }
+  </script>
+</head>
+<body onload="init()">
+  <h3>Exercise07</h3>
+  Guthaben: <span id="amount">300 </span> Geld <br />
+  <select onchange="switchGame()" id="game">
+    <option value="dice">W&uuml;rfeln</option>
+    <option value="guessNumber">Zahlenraten</option>
+  </select> <br />
+  <iframe id="include" src="dice.html"></iframe>
+</body>
+</html>
