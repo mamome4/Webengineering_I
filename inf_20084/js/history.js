@@ -1,5 +1,6 @@
 window.addEventListener("popstate", loadState);
 
+//safes the current table path
 function safeState(content) {
     const state = {
         table: content,
@@ -8,6 +9,7 @@ function safeState(content) {
     history.pushState(state, "Table", document.location);
 }
 
+//loads the table path from the state(s) that are in the browser history
 function loadState(event){
     const state = event.state;
     if(state){

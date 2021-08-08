@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     min-height: 10vh;
+    text-align: center;
 }
 #img_action{
     height: 25px;
@@ -18,12 +19,12 @@
     margin-bottom: 10px;
 }
 #table_content th{
-    padding: 18px 0px;
+    padding: 18px 0;
     background-color: #37393A;
     color: white;
 }
 #table_content td{
-    padding: 18px 0px;
+    padding: 18px 0;
 }
 #table_content tr:nth-child(even){
     background-color: #E8EEF2;

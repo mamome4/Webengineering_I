@@ -10,33 +10,35 @@ function login() {
                 console.log(req.status);
                 console.log(req.responseText);
                 console.log("Login successfull");
+                //writes the username and the Token in the session storage
                 sessionStorage.setItem("username", formData.get("username").toString());
                 sessionStorage.setItem("authcode", "Basic " + btoa(formData.get("username") + ":" + JSON.parse(this.response).token));
                 document.getElementById("myText").innerHTML  = "";
+                //start out directory is the empty path
                 sessionStorage.setItem("dir", "");
-                //buildNavBar();
                 loadDirectory(sessionStorage.getItem("dir"));
+                //sets the "is logged in state"
                 setLoginState();
-
             }else {
-                document.getElementById("myText").textContent = "Es konnte keine Verbindung zum Server aufgebaut werden"
+                //In case of an error this message is displayed above the login button
+                document.getElementById("myText").textContent = "No connection to the server could be established"
             }
         }
+        //In case the username and/or password are wrong the mesage "Wrong Username and Passowrd" is diplayed above the login button
         if ((document.getElementById("input_username").value !== "admin") || (document.getElementById("input_password").value !== "admin")) {
-            document.getElementById("myText").textContent = "Falscher Username oder Passwort"
+            document.getElementById("myText").textContent = "Wrong Username and Password"
         }
     }
+    //asks the server for the token with the username and password to authenticate them
     req.open('POST', "http://localhost:8080/login", true);
     req.setRequestHeader("Authorization", "application/x-www-form-urlencoded");
     req.send(formData);
 }
 
 function setLoginState() {
-    try{
-        document.getElementById("topbar").removeAttribute("hidden");
-    } catch (e) {}
-    document.getElementById("login_button").setAttribute("hidden", "");
-    document.getElementById("inputs").setAttribute("hidden", "");
+    //trys to remove the hidden attribute from the topbar
+    try{document.getElementById("topbar").removeAttribute("hidden");} catch (e) {}
+    //removes the login div to make space for the directory
     document.getElementById("login").remove();
 }
 
@@ -48,22 +50,22 @@ function logout() {
                 console.log(req.status);
                 console.log(req.responseText);
                 console.log("Logout successfull");
+                //removes the token from the session storage upon logout
                 sessionStorage.removeItem("authcode");
+                //sets the "is logged out" state
                 setLogoutState();
-                try{
-                    document.getElementById("myText").textContent = "";
-                } catch (e) {}
-
-
+                try{ document.getElementById("myText").textContent = "";} catch (e) {}
             }
         }
     }
+    //asks the server for a logout
     req.open('GET', "http://localhost:8080/logout", true);
     req.setRequestHeader("Authorization", sessionStorage.getItem("authcode"));
     req.send();
 }
 
 function setLogoutState() {
+    //removes all possible Elements (so that, for example, no pictures or other elements are still displayed on the page after logout)
     try {document.getElementById("logout_button").setAttribute("hidden", "");}catch (e) {}
 
     removeTable();
@@ -76,19 +78,24 @@ function setLogoutState() {
     try{document.getElementById("login_button").removeAttribute("hidden");}catch (e) {}
     try{document.getElementById("inputs").removeAttribute("hidden");} catch (e) {}
 
+    //makes the topbar invisible
     document.getElementById("topbar").setAttribute("hidden", "");
 
+    //builds the login again
     if(!document.getElementById("login")){
         buildlogin();
     }
+    document.getElementById("myText").textContent = "";
 }
 
 function isLoggedIn(){
+    //if there is no token i.e. if the session has expired upon loading of the page the "is logged out state" is loaded
     if(sessionStorage.getItem("authcode") == null){
         setLogoutState();
         return;
     }
 
+    //if the authentication code exists then load the current directory
     const req = new XMLHttpRequest();
     req.onreadystatechange = function (){
         if(req.readyState === 4){
@@ -96,11 +103,11 @@ function isLoggedIn(){
                 setLoginState();
                 loadDirectory(sessionStorage.getItem("dir"));
             }
+            //if there is an error reload the login form and delete the existing token and directory path
             if(req.status === 401){
                 sessionStorage.removeItem("authcode");
-                sessionStorage.removeItem("directory");
+                sessionStorage.removeItem("dir");
                 setLogoutState();
-                document.getElementById("myText").innerHTML = this.responseText;
             }
         }
     }
@@ -111,6 +118,7 @@ function isLoggedIn(){
 }
 
 function buildlogin() {
+    //builds the entire login form as it is in the html file again after logout
     const div_login = document.createElement("div");
     div_login.setAttribute("id", "login");
 

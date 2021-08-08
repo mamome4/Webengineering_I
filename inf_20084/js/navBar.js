@@ -1,8 +1,7 @@
 function buildNavBar() {
-    try {
-        document.getElementById("currentDir_wrapper").remove()
-    } catch (e) {}
+    try {document.getElementById("currentDir_wrapper").remove()} catch (e) {}
 
+    //creates the entire navBar in order of the Icons and Text from left to right
     const navBar = document.getElementById("navBar");
 
     const wrapper = document.createElement("div");
@@ -21,8 +20,6 @@ function buildNavBar() {
     button_back.setAttribute("title", "Back");
     button_back.addEventListener("click", previousDir);
 
-
-
     const lable_dir = document.createElement("label");
     lable_dir.setAttribute("id", "currentDir");
     lable_dir.innerText = "";
@@ -32,7 +29,7 @@ function buildNavBar() {
     button_refresh.setAttribute("class", "iconSize clickable");
     button_refresh.setAttribute("id", "img_action_logout");
     button_refresh.setAttribute("title", "Refresh");
-    button_refresh.addEventListener("click", function () {refreshTable(sessionStorage.getItem("dir"))});
+    button_refresh.addEventListener("click", refreshTable);
 
     const input_upload = document.createElement("input");
     input_upload.setAttribute("type", "file");
@@ -50,6 +47,7 @@ function buildNavBar() {
     button_upload.setAttribute("title", "Upload");
     button_upload.addEventListener("click", openDialog);
 
+    //use the button to click in the hidden input element of the type=file which is used to facilitate the upload
     function openDialog() {
         document.getElementById("input_Files").click();
     }
@@ -68,9 +66,7 @@ function buildNavBar() {
     button_createText.setAttribute("title", "Create Text File");
     button_createText.addEventListener("click", createTextFile);
 
-    try{
-        document.getElementById("logout_wrapper").remove();
-    } catch (e) {}
+    try{ document.getElementById("logout_wrapper").remove();} catch (e) {}
 
     const button_logout = document.createElement("img");
     button_logout.setAttribute("src",  "./assets/logout.png");
@@ -79,6 +75,7 @@ function buildNavBar() {
     button_logout.setAttribute("title", "Logout");
     button_logout.addEventListener("click", logout);
 
+    //appends every element to its respectiv wrapper which are then appened to the navBar
     wrapper.append(button_back);
     wrapper.append(button_refresh);
     wrapper.append(button_upload);

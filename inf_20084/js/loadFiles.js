@@ -7,8 +7,10 @@ function loadFile(type, name) {
             if(req.status === 200) {
                 const response = req.responseText;
                 switch (type) {
+                    case "image/jpeg":
                     case "image/png": displayImage(response, type);
                         break;
+                    case "audio/ogg":
                     case "audio/mpeg": displayAudio(response, type);
                         break;
                     case "text/plain": displayText(response, name);
@@ -29,13 +31,11 @@ function loadFile(type, name) {
 }
 
 function displayImage(response, type) {
-    try{
-        document.getElementById("content_wrapper").remove();
-    } catch (e) {}
-    try{
-        document.getElementById("wrapper_create").remove();
-    } catch (e) {}
+    //removes other content in the contents div
+    try{document.getElementById("content_wrapper").remove();} catch (e) {}
+    try{ document.getElementById("wrapper_create").remove();} catch (e) {}
 
+    //creats the img element with the source from the API request response
     const container = document.getElementById("contents");
 
     const wrapper = document.createElement("div");
@@ -48,20 +48,18 @@ function displayImage(response, type) {
     button_close.innerText = "Close";
     button_close.addEventListener("click", function () {wrapper.remove();});
 
+    //appends img and close button to the wrapper which is then appended to the contents div
     wrapper.append(img);
     wrapper.append(button_close);
     container.append(wrapper);
 }
 
 function displayAudio(response, type) {
-    try{
-        document.getElementById("content_wrapper").remove();
-    } catch (e) {}
-    try{
-        document.getElementById("wrapper_create").remove();
-    } catch (e) {}
+    //removes other content in the contents div API request response
+    try{document.getElementById("content_wrapper").remove();} catch (e) {}
+    try{ document.getElementById("wrapper_create").remove();} catch (e) {}
 
-
+    //creats the audio element with the source from the API request response
     const container = document.getElementById("contents");
 
     const wrapper = document.createElement("div");
@@ -76,25 +74,25 @@ function displayAudio(response, type) {
     button_close.innerText = "Close";
     button_close.addEventListener("click", function () {wrapper.remove();});
 
+    //appends audio element and close button to the wrapper which is then appended to the contents div
     wrapper.append(audio);
     wrapper.append(button_close);
     container.append(wrapper);
 }
 
 function displayText(response, name) {
-    try{
-        document.getElementById("content_wrapper").remove();
-    } catch (e) {}
-    try{
-        document.getElementById("wrapper_create").remove();
-    } catch (e) {}
+    //removes other content in the contents div
+    try{document.getElementById("content_wrapper").remove();} catch (e) {}
+    try{document.getElementById("wrapper_create").remove();} catch (e) {}
 
+    //creats the textarea element with the source from the API request response
     const container = document.getElementById("contents");
 
     const wrapper = document.createElement("div");
     wrapper.setAttribute("id", "content_wrapper");
 
     const textArea = document.createElement("textarea");
+    //save the path of the file in the textarea tag itself
     textArea.setAttribute("path", sessionStorage.getItem("dir") + name);
     textArea.setAttribute("id", "edit");
     textArea.innerText = atob(response);
@@ -107,6 +105,7 @@ function displayText(response, name) {
     button_close.innerText = "Close";
     button_close.addEventListener("click", function () {wrapper.remove();});
 
+    //appends textarea and open and close buttons to the wrapper which is then appended to the contents div
     wrapper.append(textArea);
     wrapper.append(button_save);
     wrapper.append(button_close);
@@ -114,13 +113,11 @@ function displayText(response, name) {
 }
 
 function displayVideo(response, type) {
-    try{
-        document.getElementById("content_wrapper").remove();
-    } catch (e) {}
-    try{
-        document.getElementById("wrapper_create").remove();
-    } catch (e) {}
+    //removes other content in the contents div
+    try{document.getElementById("content_wrapper").remove();} catch (e) {}
+    try{document.getElementById("wrapper_create").remove();} catch (e) {}
 
+    //creats the video element with the source from the API request response
     const container = document.getElementById("contents");
 
     const wrapper = document.createElement("div");
@@ -135,6 +132,7 @@ function displayVideo(response, type) {
     button_close.innerText = "Close";
     button_close.addEventListener("click", function () {wrapper.remove();});
 
+    //appends video element and close button to the wrapper which is then appended to the contents div
     wrapper.append(videoPlayer);
     wrapper.append(button_close);
     container.append(wrapper);
